@@ -1,0 +1,19 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+.prueba{
+    width: 820px;
+    height: 1180px;
+    background-color: red;
+    position:fixed ;
+    z-index: 2;
+}
+
+.prueba2{
+    width: 1536px;
+    height: 2048px;
+    background-color: blue;
+    position:fixed ;
+    z-index: 1;
+}
