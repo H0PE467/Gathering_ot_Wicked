@@ -1,19 +1,105 @@
 *{
     margin: 0;
     padding: 0;
-}
-.prueba{
-    width: 820px;
-    height: 1180px;
-    background-color: red;
-    position:fixed ;
-    z-index: 2;
+    background-color: #2f2757;
 }
 
-.prueba2{
-    width: 1536px;
-    height: 2048px;
-    background-color: blue;
-    position:fixed ;
-    z-index: 1;
+/* ------------------------------------------------------ */
+/*                        Menu                            */
+/* ------------------------------------------------------ */
+
+.menu,.characters,.mischief_meet,.maleficent,.diablo,.maleficent_diablo,.gothel,.mischief,.hades,.the_queen,.death,.hook,.debate,.queen_of_hearts,.vote,.shere,.hanging{
+
+    width: 820px;
+    height: 1180px;
+    position: fixed;
+    visibility: hidden;
+
 }
+
+
+.menu{
+    z-index: 2;
+    background: linear-gradient(0deg, black, #2f2757,#2f2757);
+}
+
+.menu > h1{
+    color: white;
+    background-color: rgba(0,0,0,0);
+
+    font-size: 6em;
+    text-align: center;
+
+    width: 100%;
+    padding-top: 40%;
+
+}
+
+.menu > .btn-space{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0,0,0,0);  
+}
+
+.menu > .btn-space > button{
+    color: black;
+    background-color: #d6d4de;
+
+    font-size: 3em;
+    text-align: center;
+
+    margin-top: 100px;
+    padding: 15px 0;
+    width: 30%;
+
+    border-radius: 50px;
+}
+
+/* ------------------------------------------------------ */
+/*                      Characters                        */
+/* ------------------------------------------------------ */
+
+.characters > h1{
+    color: white;
+    background-color: rgba(0,0,0,0);
+
+    font-size: 4em;
+    text-align: center;
+
+    width: 100%;
+    padding-top: 5%;
+}
+
+.characters{
+    visibility:visible;
+}
+
+.character_images{
+    padding-top: 50px;
+    display: flex;
+    justify-content:space-evenly;
+}
+
+.column{
+    display: flex;
+    flex-direction: column;
+}
+
+.char_image{
+    background-color: aquamarine;
+    border: solid 1px black;
+    margin: 10px 0;
+
+    width: 205px;
+    height: 205px;
+}
+
+
+
+
+
+
+
+
+
