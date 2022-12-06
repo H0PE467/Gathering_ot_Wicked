@@ -10,11 +10,9 @@
 
 .menu,.characters,.mischief_meet,.maleficent,.diablo,.maleficent_diablo,.gothel,.mischief,.hades,.the_queen,.death,.hook,.debate,.queen_of_hearts,.vote,.shere,.hanging{
 
-    width: 820px;
-    height: 1180px;
+    width: 100%;
     position: fixed;
     visibility: hidden;
-
 }
 
 
