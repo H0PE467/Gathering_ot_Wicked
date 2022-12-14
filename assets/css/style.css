@@ -4,24 +4,26 @@
     background-color: #2f2757;
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
 /* ------------------------------------------------------ */
 /*                        Menu                            */
 /* ------------------------------------------------------ */
 
-.menu,.characters,.mischief_meet,.maleficent,.diablo,.maleficent_diablo,.gothel,.mischief,.hades,.the_queen,.death,.hook,.debate,.queen_of_hearts,.vote,.shere,.hanging{
-
+#menu,.characters{
     width: 100%;
-    position: fixed;
-    visibility: hidden;
+    display: none;
 }
 
-
-.menu{
+#menu{
+    height: 1180px;
     z-index: 2;
     background: linear-gradient(0deg, black, #2f2757,#2f2757);
 }
 
-.menu > h1{
+#menu > h1{
     color: white;
     background-color: rgba(0,0,0,0);
 
@@ -33,14 +35,14 @@
 
 }
 
-.menu > .btn-space{
+#menu > .btn-space{
     display: flex;
     justify-content: center;
     align-items: center;
     background-color: rgba(0,0,0,0);  
 }
 
-.menu > .btn-space > button{
+#menu > .btn-space > button{
     color: black;
     background-color: #d6d4de;
 
@@ -55,48 +57,75 @@
 }
 
 /* ------------------------------------------------------ */
-/*                      Characters                        */
+/*                Characters Selection                    */
 /* ------------------------------------------------------ */
 
-.characters > h1{
-    color: white;
-    background-color: rgba(0,0,0,0);
 
+#character_selection{
+    display: none;
+    flex-direction: column;
+
+    text-align: center;
+    font-size: 1em;
+    color: whitesmoke;
+
+}
+
+#character_selection_title{
     font-size: 4em;
+    padding: 25px 0;
+
+ 
+}
+
+.characters_container{
+    display: flex;
+    justify-content: space-evenly;
+    margin: 15px 0;
+}
+
+#continue_selection{
+    color: black;
+    background-color: #d6d4de;
+
+    font-size: 3em;
     text-align: center;
 
-    width: 100%;
-    padding-top: 5%;
+    margin: 50px 0;
+    padding: 15px 0;
+    width: 30%;
+
+    border-radius: 50px;
 }
 
-.characters{
-    visibility:visible;
-}
+/* ------------------------------------------------------ */
+/*                     FxFDisplay                         */
+/* ------------------------------------------------------ */
 
-.character_images{
-    padding-top: 50px;
-    display: flex;
-    justify-content:space-evenly;
-}
-
-.column{
-    display: flex;
+#fxf_display{
+    display: none;
     flex-direction: column;
+
+    text-align: center;
+    font-size: 1em;
+    color: whitesmoke;
 }
 
-.char_image{
-    background-color: aquamarine;
-    border: solid 1px black;
-    margin: 10px 0;
-
-    width: 205px;
-    height: 205px;
+.upper_section{
+    display: flex;
+    justify-content: space-evenly;
+    margin: 15px 0;
 }
 
+.lower_section{
+    display: flex;
+    justify-content: space-evenly;
+    margin: 15px 0;
+}
 
-
-
-
+.character_profile_fxf{
+    display: none;
+}
 
 
 

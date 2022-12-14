@@ -12,68 +12,224 @@
     
     <!-- Menu -->
     
-    <div class="menu">
+    <div id="menu">
         <h1> La Asamblea del Mal </h1>
         <div class="btn-space">
-            <button> Iniciar </button>
+            <button id="start_button"> Iniciar </button>
         </div>
     </div>
 
+    <div id="character_selection">
 
-    <div class="characters">
-        <h1>Elijan sus Personajes</h1>
-        <div class="character_images">
-            <div class="column">
-                <div class="char_image"></div>
-                <div class="char_image"></div>
-                <div class="char_image"></div>
-                <div class="char_image"></div>
-                <div class="char_image"></div>
-                <div class="char_image"></div>
-                <div class="char_image"></div>
-                <div class="char_image"></div>
-                <div class="char_image"></div>
-                <div class="char_image"></div>
+        <h1 id="character_selection_title">Elijan sus Personajes</h1>
+        <!-- maleficent & diablo -->
+
+        <div class="characters_container">
+            <div class="character_profile" id="maleficent">
+                <h2>Maléfica</h2>
+                <img src="./assets/images/maleficent.png" alt="">
             </div>
-            <div class="column">
-                <div class="char_image"></div>
-                <div class="char_image"></div>
-                <div class="char_image"></div>
-                <div class="char_image"></div>
-                <div class="char_image"></div>
-                <div class="char_image"></div>
-                <div class="char_image"></div>
-                <div class="char_image"></div>
-                <div class="char_image"></div>
-                <div class="char_image"></div>
+            <div class="character_profile" id="diablo">
+                <h2>Diablo</h2>
+                <img src="./assets/images/diablo.png" alt="">
             </div>
-            
         </div>
+
+        <!-- mother_gothel & brothers_stabbington -->
+
+        <div class="characters_container">
+            <div class="character_profile" id="mother_gothel">
+                <h2>Madre Gothel</h2>
+                <img src="./assets/images/mother_gothel.png" alt="">
+            </div>
+            <div class="character_profile" id="brothers_stabbington">
+                <h2>Los Hermanos Stabbington</h2>
+                <img src="./assets/images/brothers_stabbington.png" alt="">
+            </div>
+        </div>
+
+        <!-- hades & pain_and_panic -->
+
+        <div class="characters_container">
+            <div class="character_profile" id="hades">
+                <h2>Hades</h2>
+                <img src="./assets/images/hades.png" alt="">
+            </div>
+            <div class="character_profile" id="pain_and_panic">
+                <h2>Pena y Pánico</h2>
+                <img src="./assets/images/pain_and_panic.png" alt="">
+            </div>
+        </div>
+
+        <!-- the_queen & magic_mirror -->
+
+        <div class="characters_container">
+            <div class="character_profile" id="the_queen">
+                <h2>La Reina</h2>
+                <img src="./assets/images/the_queen.png" alt="">
+            </div>
+            <div class="character_profile" id="magic_mirror">
+                <h2>El Espejo Mágico</h2>
+                <img src="./assets/images/magic_mirror.png" alt="">
+            </div>
+        </div>
+
+        <!-- king_john & sir_hiss -->
+
+        <div class="characters_container">
+            <div class="character_profile" id="king_john">
+                <h2>El Rey John</h2>
+                <img src="./assets/images/king_john.png" alt="">
+            </div>
+            <div class="character_profile" id="sir_hiss">
+                <h2>Sir Hiss</h2>
+                <img src="./assets/images/sir_hiss.png" alt="">
+            </div>
+        </div>
+        
+        <!-- hook & smee -->
+
+        <div class="characters_container">
+            <div class="character_profile" id="hook">
+                <h2>Gárfio</h2>
+                <img src="./assets/images/hook.png" alt="">
+            </div>
+            <div class="character_profile" id="smee">
+                <h2>Sr. Smee</h2>
+                <img src="./assets/images/smee.png" alt="">
+            </div>
+        </div>
+
+        <!-- queen_of_hearts & king_of_hearts -->
+
+        <div class="characters_container">
+            <div class="character_profile" id="queen_of_hearts">
+                <h2>La Reina de Corazones</h2>
+                <img src="./assets/images/queen_of_hearts.png" alt="">
+            </div>
+            <div class="character_profile" id="king_of_hearts">
+                <h2>El Rey de Corazones</h2>
+                <img src="./assets/images/king_of_hearts.png" alt="">
+            </div>
+        </div>
+
+        <!-- Shere Kahn -->
+
+        <div class="characters_container">
+            <div class="character_profile" id="shere_kahn">
+                <h2>Shere Kahn</h2>
+                <img src="./assets/images/shere_kahn.png" alt="">
+            </div>
+        </div>
+
+        <!-- lady_tremaine, drizzela & anastasia -->
+
+        <div class="characters_container">
+            <div class="character_profile" id="lady_tremaine">
+                <h2>Lady Tremaine</h2>
+                <img src="./assets/images/lady_tremaine.png" alt="">
+            </div>
+            <div class="character_profile" id="drizzela">
+                <h2>Drizzela</h2>
+                <img src="./assets/images/drizzela.png" alt="">
+            </div>
+            <div class="character_profile" id="anastasia">
+                <h2>Anastasia</h2>
+                <img src="./assets/images/anastasia.png" alt="">
+            </div>
+        </div>
+        <button id="continue_selection"> Continue </button>
     </div>
 
+    <div id="fxf_display">
+        <h1 id="fxf_title"> Diablo le dice a Maléfica si es bueno o malo</h1>
+        <div class="upper_section">
+            <div class="character_profile_fxf" id="maleficent_fxf">
+                <h2>Maléfica</h2>
+                <img src="./assets/images/maleficent.png" alt="">
+            </div>
+            <div class="character_profile_fxf" id="diablo_fxf">
+                <h2>Diablo</h2>
+                <img src="./assets/images/diablo.png" alt="">
+            </div>
+            <div class="character_profile_fxf" id="mother_gothel_fxf">
+                <h2>Madre Gothel</h2>
+                <img src="./assets/images/mother_gothel.png" alt="">
+            </div>
+            <div class="character_profile_fxf" id="brothers_stabbington_fxf">
+                <h2>Los Hermanos Stabbington</h2>
+                <img src="./assets/images/brothers_stabbington.png" alt="">
+            </div>
+            <div class="character_profile_fxf" id="hades_fxf">
+                <h2>Hades</h2>
+                <img src="./assets/images/hades.png" alt="">
+            </div>
+            <div class="character_profile_fxf" id="pain_and_panic_fxf">
+                <h2>Pena y Pánico</h2>
+                <img src="./assets/images/pain_and_panic.png" alt="">
+            </div>
+            <div class="character_profile_fxf" id="the_queen_fxf">
+                <h2>La Reina</h2>
+                <img src="./assets/images/the_queen.png" alt="">
+            </div>
+            <div class="character_profile_fxf" id="magic_mirror_fxf">
+                <h2>El Espejo Mágico</h2>
+                <img src="./assets/images/magic_mirror.png" alt="">
+            </div>
+            <div class="character_profile_fxf" id="king_john_fxf">
+                <h2>El Rey John</h2>
+                <img src="./assets/images/king_john.png" alt="">
+            </div>
+            <div class="character_profile_fxf" id="sir_hiss_fxf">
+                <h2>Sir Hiss</h2>
+                <img src="./assets/images/sir_hiss.png" alt="">
+            </div>
+            <div class="character_profile_fxf" id="hook_fxf">
+                <h2>Gárfio</h2>
+                <img src="./assets/images/hook.png" alt="">
+            </div>
+            <div class="character_profile_fxf" id="smee_fxf">
+                <h2>Sr. Smee</h2>
+                <img src="./assets/images/smee.png" alt="">
+            </div>
+            <div class="character_profile_fxf" id="queen_of_hearts_fxf">
+                <h2>La Reina de Corazones</h2>
+                <img src="./assets/images/queen_of_hearts.png" alt="">
+            </div>
+            <div class="character_profile_fxf" id="king_of_hearts_fxf">
+                <h2>El Rey de Corazones</h2>
+                <img src="./assets/images/king_of_hearts.png" alt="">
+            </div>
+            <div class="character_profile_fxf" id="shere_kahn_fxf">
+                <h2>Shere Kahn</h2>
+                <img src="./assets/images/shere_kahn.png" alt="">
+            </div>
+            <div class="character_profile_fxf" id="lady_tremaine_fxf">
+                <h2>Lady Tremaine</h2>
+                <img src="./assets/images/lady_tremaine.png" alt="">
+            </div>
+            <div class="character_profile_fxf" id="drizzela_fxf">
+                <h2>Drizzela</h2>
+                <img src="./assets/images/drizzela.png" alt="">
+            </div>
+            <div class="character_profile_fxf" id="anastasia_fxf">
+                <h2>Anastasia</h2>
+                <img src="./assets/images/anastasia.png" alt="">
+            </div>
+        </div>
+        <div class="lower_section">
+            <div>
+                <h2>Salvar</h2>
+                <img src="./assets/images/save.png" alt="">
+            </div>
+            <div>
+                <h2>Matar</h2>
+                <img src="./assets/images/kill.png" alt="">
+            </div>
+        </div>
 
-    <div class="mischief_meet"></div>
-    
-    <!-- Night -->
-    
-    <div class="maleficent"></div>
-    <div class="diablo"></div>
-    <div class="maleficent_diablo"></div>
-    <div class="gothel"></div>
-    <div class="mischief"></div>
-    <div class="hades"></div>
-    <div class="the_queen"></div>
-    <div class="death"></div>
+    </div>
 
-    <!-- Day -->
-
-    <div class="hook"></div>
-    <div class="debate"></div>
-    <div class="queen_of_hearts"></div>
-    <div class="vote"></div>
-    <div class="shere"></div>
-    <div class="hanging"></div>
-
-
+    <script src="./assets/js/script.js"></script>
 </body>
 </html>
