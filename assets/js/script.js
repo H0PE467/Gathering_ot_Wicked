@@ -1,5 +1,10 @@
+//============================================//
+//                                            //
+// ---------- ELEMENTS FROM DOM ------------- //
+//                                            //
+//============================================//
 
-// ------------ Elements from DOM ------------ //
+body = document.querySelector('*');
 
 menu = document.getElementById('menu');
 start_button = document.getElementById('start_button');
@@ -29,6 +34,16 @@ lady_tremaine = document.getElementById('lady_tremaine');
 drizzela = document.getElementById('drizzela');
 anastasia = document.getElementById('anastasia');
 
+ct_zero = document.getElementById('ct-0');
+ct_one = document.getElementById('ct-1');
+ct_two = document.getElementById('ct-2');
+ct_three = document.getElementById('ct-3');
+ct_four = document.getElementById('ct-4');
+ct_five = document.getElementById('ct-5');
+ct_six = document.getElementById('ct-6');
+ct_seven = document.getElementById('ct-7');
+ct_eight = document.getElementById('ct-8');
+
 continue_selection = document.getElementById('continue_selection');
 
 // - - -//
@@ -56,52 +71,63 @@ lady_tremaine_fxf = document.getElementById('lady_tremaine_fxf');
 drizzela_fxf = document.getElementById('drizzela_fxf');
 anastasia_fxf = document.getElementById('anastasia_fxf');
 
-// ------------ Variables ------------ //
+save_choice = document.getElementById('save_choice');
+kill_choice = document.getElementById('kill_choice');
+mayhem_choice = document.getElementById('mayhem_choice');
+mischief_choice = document.getElementById('mischief_choice');
+choose_now = document.getElementById('choose_now');
+
+reset_game = document.getElementById('reset_game');
+
+//============================================//
+//                                            //
+// ---------------- VARIABLES ---------------- //
+//                                            //
+//============================================//
 
 // - Alive - //
 
 is_maleficent_alive = false;
 is_diablo_alive = false;
 is_mother_gothel_alive = false;
-is_brothers_stabbington_alive = false;
 is_hades_alive = false;
-is_pain_and_panic_alive = false;
 is_the_queen_alive = false;
-is_magic_mirror_alive = false;
 is_king_john_alive = false;
-is_sir_hiss_alive = false;
 is_hook_alive = false;
-is_smee_alive = false;
 is_queen_of_hearts_alive = false;
-is_king_of_hearts_alive  = false;
 is_shere_kahn_alive = false;
-is_lady_tremaine_alive = false;
-is_drizzela_alive = false;
-is_anastasia_alive = false;
 
 // - Decisiones - //
 
 hades_has_power = true;
 thequeen_has_power = true;
+queen_of_hearts_has_power = true;
 
-is_the_crown_dead = false;
+hooks_prisoner = -1;
 who_has_the_crown = 8;
 previous_tower_protection = [];
 tower_protected = -1;
 is_queen_power_active = 0;
 
+hangman_decision = -1;
 mischief_team = [];
 mischief_decision = -1;
+queen_override = -1;
 
+henchman = -1;
+alive = [];
 good_guys = [];
 dead = [];
-omision = [];
 choices = [];
 
 mode = 0;
 stage = 0;
 
-// ------------ Event Listeners ------------ //
+//============================================//
+//                                            //
+// ------------- EVENT LISTENERS ------------ //
+//                                            //
+//============================================//
 
 maleficent.addEventListener("click", () => selected(0));
 diablo.addEventListener("click", () => selected(1));
@@ -124,9 +150,33 @@ anastasia.addEventListener("click", () => selected(17))
 
 start_button.addEventListener("click", main);
 
-continue_selection.addEventListener("click", next);
+choose_now.addEventListener("click", () => {
+    clearInterval(voting_time);
+    fade_fxf();
+    setTimeout(next, 1000);
+});
 
-// ------------ Funciones ------------ //
+continue_selection.addEventListener("click", 
+    () => {
+    fade_selection();
+    setTimeout(() => {
+        next();
+    }, 1000);
+});
+
+queen_of_hearts_fxf.addEventListener("click", () => selected(20));
+
+save_choice.addEventListener("click", () => selected(100));
+kill_choice.addEventListener("click", () => selected(200));
+
+reset_game.addEventListener("click", reset);
+
+//============================================//
+//                                            //
+// ---------------- FUNCTION ---------------- //
+//                                            //
+//============================================//
+
 
 // Menu //
 
@@ -136,6 +186,21 @@ function show_menu(){
 
 function hide_menu(){
     menu.style.display = 'none';
+}
+
+function fade_menu() {
+    i = 100;
+    k = setInterval(()=>{
+        
+        if (i == 0) {
+            menu.style.opacity = i;
+            clearInterval(k);
+        }else{
+            menu.style.opacity = i/100;
+            i= i-5;
+        }
+        
+    },25)
 }
 
 // Character Selection //
@@ -214,6 +279,34 @@ function hide_unselectable(array) {
             anastasia.style.display = 'none';
         }
     }
+
+    if (maleficent.style.display == 'none' && diablo.style.display == 'none') {
+        ct_zero.style.display = 'none';
+    }
+    if (mother_gothel.style.display == 'none' && brothers_stabbington.style.display == 'none') {
+        ct_one.style.display = 'none';
+    }
+    if (hades.style.display == 'none' && pain_and_panic.style.display == 'none') {
+        ct_two.style.display = 'none';
+    }
+    if (the_queen.style.display == 'none' && magic_mirror.style.display == 'none') {
+        ct_three.style.display = 'none';
+    }
+    if (king_john.style.display == 'none' && sir_hiss.style.display == 'none') {
+        ct_four.style.display = 'none';
+    }
+    if (hook.style.display == 'none' && smee.style.display == 'none') {
+        ct_five.style.display = 'none';
+    }
+    if (queen_of_hearts.style.display == 'none' && king_of_hearts.style.display == 'none') {
+        ct_six.style.display = 'none';
+    }
+    if (shere_kahn.style.display == 'none') {
+        ct_seven.style.display = 'none';
+    }
+    if (lady_tremaine.style.display == 'none' && drizzela.style.display == 'none'&& anastasia.style.display == 'none') {
+        ct_eight.style.display = 'none';
+    }
 }
 
 function show_selection_again() { 
@@ -234,10 +327,21 @@ function show_selection_again() {
     shere_kahn.style.display = 'block';
     lady_tremaine.style.display = 'block';
     drizzela.style.display = 'block';
-    anastasia.style.display = 'block';  
+    anastasia.style.display = 'block';
+    
+    ct_zero.style.display = 'flex';
+    ct_one.style.display = 'flex';
+    ct_two.style.display = 'flex';
+    ct_three.style.display = 'flex';
+    ct_four.style.display = 'flex';
+    ct_five.style.display = 'flex';
+    ct_six.style.display = 'flex';
+    ct_seven.style.display = 'flex';
+    ct_eight.style.display = 'flex';
 }
 
 function show_character_selection(){
+    character_selection.style.opacity = 1;
     character_selection.style.display = 'block';
 }
 
@@ -245,9 +349,24 @@ function hide_character_selection(){
     character_selection.style.display = 'none';
 }
 
+function fade_selection() {
+    i = 100;
+    k = setInterval(()=>{
+        
+        if (i == 0) {
+            character_selection.style.opacity = i;
+            clearInterval(k);
+        }else{
+            character_selection.style.opacity = i/100;
+            i= i-5;
+        }
+        
+    },25)
+}
+
 // Four x Four //
 
-function set_fxf(array, text){
+function set_fxf(array, text, mode){
 
     show_fxf();
     hide_character_selection();
@@ -255,6 +374,29 @@ function set_fxf(array, text){
     set_fxf_title(text)
     hide_choices_again();
     show_choices(array);
+
+    save_choice.style.display = "none";
+    kill_choice.style.display = "none";
+    mayhem_choice.style.display = "none";
+    mischief_choice.style.display = "none";
+    choose_now.style.display = "none";
+
+    if (mode == "mayhem") {
+        mayhem_choice.style.display = "block";
+
+    }else if (mode == "mischief") {
+        mischief_choice.style.display = "block";
+
+    }else if (mode == "loyalty") {
+        mayhem_choice.style.display = "block";
+        mischief_choice.style.display = "block";
+
+    }else if (mode == "choice") {
+        save_choice.style.display = "block";
+        kill_choice.style.display = "block";
+    }else if (mode == "meeting") {
+        choose_now.style.display = "block";
+    }
 }
 
 function set_fxf_title(text) {
@@ -342,6 +484,7 @@ function hide_choices_again() {
 }
 
 function show_fxf(){
+    fxf_display.style.opacity = 1;
     fxf_display.style.display = 'block';
 }
 
@@ -349,8 +492,24 @@ function hide_fxf(){
     fxf_display.style.display = 'none';
 }
 
+function fade_fxf() {
+    i = 100;
+    k = setInterval(()=>{
+        
+        if (i == 0) {
+            fxf_display.style.opacity = i;
+            clearInterval(k);
+        }else{
+            fxf_display.style.opacity = i/100;
+            i= i-5;
+        }
+        
+    },25)
+}
+
 // Other //
 function set_alive(id) {
+    alive.push(id);
     good_guys.push(id);
     if (id == 0) {
         is_maleficent_alive = true;
@@ -361,50 +520,23 @@ function set_alive(id) {
     else if (id == 2) {
         is_mother_gothel_alive = true;
     }
-    else if (id == 3) {
-        is_brothers_stabbington_alive = true;
-    }
     else if (id == 4) {
         is_hades_alive = true;
-    }
-    else if (id == 5) {
-        is_pain_and_panic_alive = true;
     }
     else if (id == 6) {
         is_the_queen_alive = true;
     }
-    else if (id == 7) {
-        is_magic_mirror_alive = true;
-    }
     else if (id == 8) {
         is_king_john_alive = true;
-    }
-    else if (id == 9) {
-        is_sir_hiss_alive = true;
     }
     else if (id == 10) {
         is_hook_alive = true;
     }
-    else if (id == 11) {
-        is_smee_alive = true;
-    }
     else if (id == 12) {
         is_queen_of_hearts_alive = true;
     }
-    else if (id == 13) {
-        is_king_of_hearts_alive = true;
-    }
     else if (id == 14) {
         is_shere_kahn_alive = true;
-    }
-    else if (id == 15) {
-        is_lady_tremaine_alive = true;
-    }
-    else if (id == 16) {
-        is_drizzela_alive = true;
-    }
-    else if (id == 17) {
-        is_anastasia_alive = true;
     }
 }
 
@@ -418,63 +550,40 @@ function kill(id){
     else if (id == 2) {
         is_mother_gothel_alive = false;
     }
-    else if (id == 3) {
-        is_brothers_stabbington_alive = false;
-    }
     else if (id == 4) {
         is_hades_alive = false;
-    }
-    else if (id == 5) {
-        is_pain_and_panic_alive = false;
     }
     else if (id == 6) {
         is_the_queen_alive = false;
     }
-    else if (id == 7) {
-        is_magic_mirror_alive = false;
-    }
     else if (id == 8) {
         is_king_john_alive = false;
-    }
-    else if (id == 9) {
-        is_sir_hiss_alive = false;
     }
     else if (id == 10) {
         is_hook_alive = false;
     }
-    else if (id == 11) {
-        is_smee_alive = false;
-    }
     else if (id == 12) {
         is_queen_of_hearts_alive = false;
-    }
-    else if (id == 13) {
-        is_king_of_hearts_alive = false;
     }
     else if (id == 14) {
         is_shere_kahn_alive = false;
     }
-    else if (id == 15) {
-        is_lady_tremaine_alive = false;
-    }
-    else if (id == 16) {
-        is_drizzela_alive = false;
-    }
-    else if (id == 17) {
-        is_anastasia_alive = false;
-    }
+    dead.push(id);
     
-    // ---- Crown ---- //
-    
-    if (id == crown) {
-        is_the_crown_dead = true;
-    }
 
     // ---- Mischief Team ---- //
 
     for (i = 0; i < mischief_team.length; i++) {
         if (mischief_team[i] == id) {
             mischief_team.splice(i,1);
+        }   
+    }
+
+    // ---- Mayhem Team ---- //
+
+    for (i = 0; i < good_guys.length; i++) {
+        if (good_guys[i] == id) {
+            good_guys.splice(i,1);
         }   
     }
 
@@ -488,12 +597,68 @@ function scroll_to_top() {
     window.scrollTo(0, 0);
 }
 
+function show_wp(wallpaper) {
+    document.getElementById(wallpaper).style.display = "block";
+}
+
+function hide_wp(wallpaper) {
+    document.getElementById(wallpaper).style.display = "none";
+}
+
+function reset(){
+
+    is_maleficent_alive = false;
+    is_diablo_alive = false;
+    is_mother_gothel_alive = false;
+    is_hades_alive = false;
+    is_the_queen_alive = false;
+    is_king_john_alive = false;
+    is_hook_alive = false;
+    is_queen_of_hearts_alive = false;
+    is_shere_kahn_alive = false;
+
+
+    hades_has_power = true;
+    thequeen_has_power = true;
+    queen_of_hearts_has_power = true;
+
+    hooks_prisoner = -1;
+    who_has_the_crown = 8;
+    previous_tower_protection = [];
+    tower_protected = -1;
+    is_queen_power_active = 0;
+
+    hangman_decision = -1;
+    mischief_team = [];
+    mischief_decision = -1;
+    queen_override = -1;
+
+    good_guys = [];
+    dead = [];
+    choices = [];
+
+    mode = 0;
+    stage = 0;
+    reset_game.style.display = "none";
+    continue_selection.style.display = 'inline-block';
+
+    fade_fxf();
+    setTimeout(show_menu,1000);
+}
+
+//============================================//
+//                                            //
+// ---------------- SELECTED ---------------  //
+//                                            //
+//============================================//
+
 function selected(id) {
+
     // Character Selection
     if (mode == 0) {
         set_alive(id);
         choices.push(id);
-        set_selection(choices,'Eligan los personajes que jugaran');
+        set_selection(choices,'Elija los personajes que jugaran y luego presione continuar');
     }
     // Mischief Team Meeting
     else if (mode == 1) {
@@ -510,50 +675,146 @@ function selected(id) {
     // Maleficient Search Choice
     else if (mode == 2) {
         choices.push(id);
+        fade_selection();
         setTimeout(next, 1000);
     }
-    // Mother Gothel Protection
+    // Mother Gothel Protection Choice
     else if (mode == 3) {
         tower_protected = id;
         previous_tower_protection = [id];
-        next();
+        fade_selection();
+        setTimeout(next, 1000);
     }
-    // Mischief Decision
+    // Mischief Choice
     else if (mode == 4) {
         mischief_decision = id;
         if (mischief_decision == tower_protected) {
             mischief_decision = -1;
         }
-        next();
+        fade_selection();
+        setTimeout(next, 1000);
     }
     // Hades Decision
     else if (mode == 5) {
-        if (id = 100) {
+        if (id == 100) {
             mischief_decision = -1;
             hades_has_power = false;
         }
-        next();
+        fade_fxf();
+        setTimeout(next, 1000);
     }
+    // The Queen Decision
     else if (mode == 6) {
-        if (id = 100) {
+        if (id == 100) {
             mischief_decision = -1;
             thequeen_has_power = false;
+            is_queen_power_active = true;
+            stage = 8;
         }
-        next();
+        fade_fxf();
+        setTimeout(next, 1000);
     }
+    // The Queen Choice
     else if (mode == 7) {
-        console.log(id);
+        queen_override = id;
+        fade_selection();
+        setTimeout(next, 1000);
+    }
+    // New Crown Choice
+    else if (mode == 8) {
+        who_has_the_crown = id;
+        fade_selection();
+        setTimeout(() => {hide_wp("crown_wp");}, 1000);
+        setTimeout(next, 1000);
+    }
+    // Hooks Prisoner Choice
+    else if(mode == 9){
+        hooks_prisoner = id;
+        fade_selection();
+        setTimeout(next, 1000);
+    }
+    // Hangman Choice
+    else if(mode == 10){
+        hangman_decision = id;
+        fade_selection();
+        setTimeout(next, 1000);
+    }
+    // New Crown Choice
+    else if(mode == 11){
+        who_has_the_crown = id;
+        fade_selection();
+        setTimeout(() => {hide_wp("crown_wp");}, 1000);
+        setTimeout(next, 1000);
+    }
+    // Queen of Hearts Choice 
+    else if (mode == 12) {
+        console.log("mode12");
+        empty_choices();
+        choices.push(id);
+        fade_selection();
+        setTimeout(next, 1000);
+    }
+    // Queen of Hearts Decision 
+    else if (mode == 13) {
+        if (id == 100) {
+            hangman_decision = -1;
+        }else{
+            hangman_decision = choices[0];
+        }
+        fade_fxf();
+        setTimeout(next, 1000);
+    }
+    else if (mode == 14) {
+        if (id == 100) {
+            stage = 16;
+        }else{
+            stage = 22;
+        }
+        fade_fxf();
+        setTimeout(next, 1000);
+    }
+    else if (mode == 15) {
+        if (id == 100) {
+            stage = 25;
+        }else{
+            stage = 24;
+        }
+        fade_fxf();
+        setTimeout(next, 1000);
+    }
+    else if (mode == 16) {
+        if (id == 100) {
+            stage = 16;
+        }else{
+            stage = 26;
+        }
+        fade_fxf();
+        setTimeout(next, 1000);
+    }
+    // Next Override
+    else if(mode == 100){
+        fade_selection();
+        setTimeout(next, 1000);
+    }
+    // Queen of Hearts Power
+    if (id == 20) {
+        stage = 19;
+        queen_of_hearts_has_power = false;
+        clearInterval(voting_time);
+        fade_fxf();
+        setTimeout(next, 1000);
     }
 }
 
-// ------------ Main ------------ //
+//============================================//
+//                                            //
+// ----------------- STAGES ----------------- //
+//                                            //
+//============================================//
 
-set_title_selection('hello');
-
-show_menu();
 
 function next() {
-
+    // Mischief Team Choice
     if (stage == 0) {
         mode = 1;
         stage = 1;
@@ -566,91 +827,364 @@ function next() {
 
         empty_choices();
         scroll_to_top();
-        set_selection(choices,"Malhechores eligan sus personajes");
+        set_selection(choices,"Malhechores elijan sus personajes y luego presionen continuar");
     }
+    // Maleficient Choice
     else if (stage == 1) {
-        if (is_maleficent_alive) {
+
+        continue_selection.style.display = 'none';
+
+        if (is_maleficent_alive && is_diablo_alive) {
             mode = 2;
             stage = 2;
             empty_choices();
             
             scroll_to_top();
-            set_selection([0,1],"Maléfica elige a quien investigar esta noche");
+            set_selection([0,1],"Maléfica elige a quien investigará su cuervo Diaval esta noche");
         }else{
-            mode = 3;
             stage = 4;
             next();
         }
     }
+    // Diablo Reveal
     else if (stage == 2) {
-        hide_character_selection();
-        set_fxf(choices,"Malefica eligio a este personaje para investigar")
-        mode = 3;
         stage = 3;
-        setTimeout(next, 1000);
+        mode = 404;
+
+        if (mischief_team.includes(choices[0])) {
+            set_fxf(choices,"Diaval, Maléfica eligió a este personaje para que lo investigaras", "mischief");
+        }else{
+            set_fxf(choices,"Diaval, Maléfica eligió a este personaje para que lo investigaras", "mayhem");
+        }
+
+        setTimeout(next, 5000);
     }
+    // Diablo Speaks
     else if (stage == 3) {
-        set_fxf([0,1],"Diaval le dice a Malefica si era bueno o mlao")
         stage = 4;
-        setTimeout(next, 1000);
+        set_fxf([0,1],"Diaval, ahora debes decirle la lealtad del personaje que eligió","loyalty")
+        setTimeout(next, 5000);
     }
+    // Mother Gothel Choice
     else if (stage == 4) {
         stage = 5;
-        empty_choices();
-        set_selection(previous_tower_protection,"La Madre Gothel elige a quien proteger esta noche")
+        if (is_mother_gothel_alive) {
+            mode = 3;
+            empty_choices();
+            set_selection(previous_tower_protection,"Madre Gothel, elige a quien encerrar en tu torre, este personaje estará protegido")
+        }else{
+            next();
+        }
     }
+    // Mischief Choice
     else if (stage == 5) {
+        scroll_to_top();
         mode = 4;
         stage = 6;
-        set_selection(mischief_team,"Los malhechores deciden a quien matar esta noche");
+        set_selection(mischief_team,"Los malhechores deben decidir a quien matarán esta noche");
     }
+    // Hades Decision
     else if (stage == 6) {
         stage = 7;
-        mode = 5;
-        if (mischief_decision != -1) {
-            set_fxf([mischief_decision], "Hades, Los Malhechores matarn a este jugador, quieres salvarlo?")
-        }
-        else{
-            set_fxf([], "Hades,Los Malhechores matarn a este jugador, quieres salvarlo?")
-        }
-    }
-    else if (stage == 7) {
-        stage = 8;
-        mode = 6;
-
-        if (mischief_decision != -1) {
-            set_fxf([mischief_decision], "Reina, Los Malhechores matarn a este jugador, quieres salvarlo?")
-        }
-        else{
-            set_fxf([], "Reina, Los Malhechores mataran a este jugador, quieres salvarlo?")
-        }
-    }
-    else if(stage == 8){
-        stage = 9;
-        mode = 7;
-
-        if (mischief_decision != -1) {
-            set_fxf([mischief_decision], "Este jugador a muerto");
-            kill(mischief_decision);
-        }
-        else{
-            set_fxf([], "Los Malhechores no han matado a nadie esta ronda")
+        if (is_hades_alive && hades_has_power) {
+            if (mischief_decision != -1) {
+                mode = 5;
+                set_fxf([mischief_decision], "Hades, los Malhechores matarán a este jugador, quieres salvarlo?","choice")
+            }
+            else{
+                mode = 404;
+                set_fxf([], "Hades, al parecer esta noche no habrá victima, talvez alguien más ya lo salvo?","choice");
+                setTimeout(next, 5000);
+            }
+        }else{
+            next();
         }
         
     }
+    // The Queen Decision
+    else if (stage == 7) {
+        stage = 9;
+        if (is_the_queen_alive && thequeen_has_power) {
+            if (mischief_decision != -1 ) {
+                mode = 6;
+                set_fxf([mischief_decision], "Reina, Los Malhechores mataran a este jugador, quieres evitarlo e imponer tu autoridad?","choice")
+            }
+            else{
+                mode = 404;
+                set_fxf([], "Reina, al parecer esta noche no habrá victima, talvez alguien más ya lo salvo?","choice");
+                setTimeout(next, 5000);
+            }
+        }else{
+            next();
+        }
+        
+    }
+    // The Queen Choice
+    else if(stage == 8){
+        stage = 10;
+        mode = 7;
+        set_selection([6,mischief_decision],"Que lealtad decidiras revelar en su lugar?");
+        
+    }
+    // Mischief Death
+    else if (stage == 9) {
+        stage = 11;
+        mode = 404;
+        if (mischief_decision != -1) {
+            set_fxf([mischief_decision], "Esta noche, este jugador a muerto","mayhem");
+            kill(mischief_decision);
+
+            if (mischief_team.length >= good_guys.length) {
+                stage = 50;
+            }
+
+        }
+        else{
+            set_fxf([], "Los Malhechores no han matado a nadie esta ronda","loyalty")
+        }
+        setTimeout(next, 3000);
+
+    }
+    // The Queen Reveal
+    else if(stage == 10){
+        stage = 11;
+        mode = 404;
+        if (mischief_team.includes(queen_override)) {
+            set_fxf([queen_override],"La Reina ha revelado a un malhechor (malo), ha sido descubierto y juzgado","mischief");
+            kill(queen_override);
+        }else{
+            set_fxf([queen_override],"La Reina ha revelado a un vándalo (bueno), ha quedado libre de duda","mayhem");
+        }
+
+        if(mischief_team.length == 0) {
+            stage = 60;
+        }
+
+        setTimeout(next, 5000);
+
+    }
+    // New Crown Choice
+    else if (stage == 11) {
+        stage = 12;
+        if (dead.includes(who_has_the_crown)) {
+            mode = 8;
+            show_wp("crown_wp");
+            set_selection([],"El rey ha muerto! Pero antes de morir, eligio un heredero que es...");
+        }else{
+            next();
+        }
+    }
+    // Hooks Prisoner Choice
+    else if (stage == 12) {
+        scroll_to_top();
+        stage = 13;
+        if (is_hook_alive) {
+            mode = 9;
+            set_selection([10],"El Capitán Garfio se apresura a tomar un prisionero!");
+        }else{
+            next();
+        }
+    }
+    // Hangman Meeting
+    else if(stage == 13){
+        stage = 14;
+        mode = 404;
+        if (queen_of_hearts_has_power && is_queen_of_hearts_alive) {
+            set_fxf([12], "La asamblea tiene 5 min para decidir a quien lincharán hoy","meeting");
+        }else{
+            set_fxf([], "La asamblea tiene 5 min para decidir a quien lincharán hoy","meeting");
+        }
+
+        voting_time = setTimeout(next, 20000);
+    }
+    // Hangman Choice
+    else if (stage == 14) {
+        stage = 15;
+        mode = 10;
+        set_selection([], "La asamblea vota y la persona a la que lincharan hoy será...");
+    }
+    // Hangman Death
+    else if (stage == 15) {
+        stage = 16;
+        mode = 404;
+
+        if (hangman_decision != -1) {
+            if (mischief_team.includes(hangman_decision)) {
+                set_fxf([hangman_decision],"Uno de los malhechores ha sido encontrado", "mischief");
+            }else{
+                set_fxf([hangman_decision],"Un miembro inocente de los vándalos ha sido linchado", "mayhem");
+                if (hangman_decision%2 == 0 && alive.includes(hangman_decision+1) && hangman_decision < 14) {
+                    henchman = hangman_decision+1;
+                    stage = 21;
+                }else if(hangman_decision == 15){
+                    if (alive.includes(16) && alive.includes(17)) { 
+                        stage = 23;
+                    } else if (alive.includes(16)) {
+                        henchman = 16;
+                        stage = 21;
+                    } else{
+                        henchman = 17;
+                        stage = 21;
+                    }
+                }
+            }
+            kill(hangman_decision);
+
+
+            if (mischief_team.length >= good_guys.length) {
+                stage = 50;
+            }else if (mischief_team.length == 0) {
+                stage = 60;
+            }
+            setTimeout(next, 5000);
+        }else{
+            set_fxf([],"Nadie ha muerto este día", "loyalty");
+            setTimeout(fade_fxf, 3000);
+            setTimeout(next, 4000);
+        }
+
+    }
+    // Hooks Prisoner Death
+    else if(stage == 16){
+        stage = 17;
+        if (hangman_decision == 10) {
+            kill(hooks_prisoner);
+            mode = 404;
+            if (mischief_team.includes(hooks_prisoner)) {
+                set_fxf([hooks_prisoner],"Garfio ha muerto pero no sin llevarse consigo a su prisionero", "mischief");
+            }else{
+                set_fxf([hooks_prisoner],"Garfio ha muerto pero no sin llevarse consigo a su prisionero", "mayhem");
+            }
+            setTimeout(fade_fxf, 4000);
+            setTimeout(next, 5000);
+        }
+        next();
+    }
+    // New Crown Choice
+    else if (stage == 17) {
+        stage = 18;
+        if (dead.includes(who_has_the_crown)) {
+            mode = 11;
+            show_wp("crown_wp");
+            set_selection([],"El rey ha muerto! Pero antes de morir, eligio un heredero que es...");
+        }else{
+            next();
+        }
+    }
+    // Shere Khan Scrath
+    else if (stage == 18) {
+        stage = 1;
+        if (is_shere_kahn_alive) {
+            mode = 404;
+            set_fxf([14],"Shere Khan ataca con un zarpazo!","none");
+            show_wp("claw_mark_wp");
+            setTimeout(()=>{hide_wp("claw_mark_wp");}, 3000);
+            setTimeout(next, 3000);
+        }else{
+            next();
+        }
+    }
+    // Queen of Hearts Power
+    else if (stage == 19) {
+        console.log("stage19");
+        stage = 20;
+        mode = 12;
+        set_selection([12],"La Reina de Corazones ordena que le cortemos la cabeza a...");
+    }
+    // Queen of Hearts Vote
+    else if (stage == 20) {
+        console.log("stage20");
+        stage = 15;
+        mode = 13;
+        set_fxf(choices,"Todos a favor de que le corten la cabeza?","choice");
+    }
+    // Henchaman Betrayal
+    else if (stage == 21) {
+        stage = 16;
+        mode = 14;
+        set_fxf([henchman],"Su secuaz acuso incorrectamente a su villano?","choice");
+    }
+    // Henchaman Dies
+    else if (stage == 22) {
+        stage = 16;
+        mode = 404;
+        if (mischief_team.includes(henchman)) {
+            set_fxf([henchman],"Este secuaz ha traiciado injustamente a su villano y sufrio las consecuencias", "mischief");
+        }else{
+            set_fxf([henchman],"Este secuaz ha traiciado injustamente a su villano y sufrio las consecuencias", "mayhem");
+        }
+        kill(henchman);
+
+
+        if (mischief_team.length >= good_guys.length) {
+            stage = 50;
+        }else if (mischief_team.length == 0) {
+            stage = 60;
+        }
+        setTimeout(next, 5000);
+    }
+    // Lady Tremain Excepion
+    else if (stage == 23){
+        mode = 15;
+        set_fxf([hangman_decision+1],"Su secuaz acuso incorrectamente a su villano?","choice");
+    }
+    else if (stage == 24) {
+        stage = 25;
+        mode = 404;
+        if (mischief_team.includes(henchman)) {
+            set_fxf([hangman_decision+1],"Este secuaz ha traiciado injustamente a su villano y sufrio las consecuencias", "mischief");
+        }else{
+            set_fxf([hangman_decision+1],"Este secuaz ha traiciado injustamente a su villano y sufrio las consecuencias", "mayhem");
+        }
+        kill(hangman_decision+1);
+
+
+        if (mischief_team.length >= good_guys.length) {
+            stage = 50;
+        }else if (mischief_team.length == 0) {
+            stage = 60;
+        }
+        setTimeout(next, 2500);
+    }
+    else if (stage == 25){
+        mode = 16;
+        set_fxf([hangman_decision+2],"Su secuaz acuso incorrectamente a su villano?","choice");
+    }
+    else if (stage == 26) {
+        stage = 16;
+        mode = 404;
+        if (mischief_team.includes(henchman)) {
+            set_fxf([hangman_decision+2],"Este secuaz ha traiciado injustamente a su villano y sufrio las consecuencias", "mischief");
+        }else{
+            set_fxf([hangman_decision+2],"Este secuaz ha traiciado injustamente a su villano y sufrio las consecuencias", "mayhem");
+        }
+        kill(hangman_decision+2);
+
+
+        if (mischief_team.length >= good_guys.length) {
+            stage = 50;
+        }else if (mischief_team.length == 0) {
+            stage = 60;
+        }
+        setTimeout(next, 2500);
+    }
+    // Mischief Win
+    else if (stage == 50) {
+        reset_game.style.display = "inline-block";
+        set_fxf(mischief_team,"Los Malhechores han acabado con la asamblea!","mischief");
+    }
+    // Mayhem Win
+    else if (stage == 60) {
+        reset_game.style.display = "inline-block";
+        set_fxf([],"La Asamblea ha triunfado y los Vándalos ganan!","mayhem");
+    }
 }
+
+// ------------ Main ------------ //
 
 function main() {
     hide_menu();
-
-    set_selection(choices,"Eligan los personajes que jugaran");
+    set_selection(choices,"Elija los personajes que jugaran y luego presione continuar");
 }
 
-
-
-
-
-
-
-
-
+show_menu();

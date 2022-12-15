@@ -1,12 +1,22 @@
+
+@font-face {
+    font-family: "Disney";
+    src: url("../fonts/FjallaOne-Regular.ttf");
+}
+
 *{
     margin: 0;
     padding: 0;
     background-color: #2f2757;
+    font-family: "Disney";
 }
 
 html {
     scroll-behavior: smooth;
 }
+
+
+
 
 /* ------------------------------------------------------ */
 /*                        Menu                            */
@@ -27,10 +37,11 @@ html {
     color: white;
     background-color: rgba(0,0,0,0);
 
-    font-size: 6em;
+    font-size: 8em;
     text-align: center;
 
-    width: 100%;
+    margin-left: 5%;
+    width: 90%;
     padding-top: 40%;
 
 }
@@ -72,9 +83,13 @@ html {
 }
 
 #character_selection_title{
-    font-size: 4em;
+    margin-left: 5%;
+    width: 90%;
+    font-size: 3em;
     padding: 25px 0;
+    padding-top: 35px;
 
+    border-bottom: 5px white solid;
  
 }
 
@@ -98,6 +113,26 @@ html {
     border-radius: 50px;
 }
 
+.character_profile > h2{
+    font-size: 2.5em;
+    width: 250px;
+    height: 50px;
+
+    margin-top: 15px;
+}
+
+.large_container > .character_profile > h2{
+    font-size: 2.5em;
+    width: 250px;
+    height: 100px;
+
+    margin-top: 15px;
+}
+
+#wallpapers > img{
+    display: none;
+}
+
 /* ------------------------------------------------------ */
 /*                     FxFDisplay                         */
 /* ------------------------------------------------------ */
@@ -109,6 +144,17 @@ html {
     text-align: center;
     font-size: 1em;
     color: whitesmoke;
+}
+
+#fxf_title{
+    margin-left: 5%;
+    width: 90%;
+    font-size: 4em;
+    padding: 25px 0;
+    padding-top: 35px;
+    margin-bottom: 50px;
+
+    border-bottom: 5px white solid;
 }
 
 .upper_section{
@@ -127,6 +173,38 @@ html {
     display: none;
 }
 
+.character_profile_fxf > h2{
+    font-size: 2.5em;
+    width: 250px;
+    height: 50px;
+}
 
+.large_container > h2{
+    font-size: 2.5em;
+    width: 250px;
+    height: 100px;
+}
 
+.lower_section > div > h2{
+    font-size: 4em;
+    width: 250px;
+}
 
+#wallpapers_fxf > img{
+    display: none;
+}
+
+#reset_game{
+    display: none;
+    color: black;
+    background-color: #d6d4de;
+
+    font-size: 3em;
+    text-align: center;
+
+    margin: 50px 0;
+    padding: 15px 0;
+    width: 60%;
+
+    border-radius: 50px;
+}

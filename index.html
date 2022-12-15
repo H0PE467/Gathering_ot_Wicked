@@ -21,23 +21,26 @@
 
     <div id="character_selection">
 
-        <h1 id="character_selection_title">Elijan sus Personajes</h1>
+        <div id="wallpapers">
+            <img id="crown_wp" src="./assets/images/crown_wp.png" alt="">
+        </div>
+        <h1 id="character_selection_title">Elija los personajes que jugaran y luego presione continuar</h1>
         <!-- maleficent & diablo -->
 
-        <div class="characters_container">
+        <div class="characters_container" id="ct-0">
             <div class="character_profile" id="maleficent">
                 <h2>Maléfica</h2>
                 <img src="./assets/images/maleficent.png" alt="">
             </div>
             <div class="character_profile" id="diablo">
-                <h2>Diablo</h2>
+                <h2>Diaval</h2>
                 <img src="./assets/images/diablo.png" alt="">
             </div>
         </div>
 
         <!-- mother_gothel & brothers_stabbington -->
 
-        <div class="characters_container">
+        <div class="characters_container large_container" id="ct-1">
             <div class="character_profile" id="mother_gothel">
                 <h2>Madre Gothel</h2>
                 <img src="./assets/images/mother_gothel.png" alt="">
@@ -50,7 +53,7 @@
 
         <!-- hades & pain_and_panic -->
 
-        <div class="characters_container">
+        <div class="characters_container" id="ct-2">
             <div class="character_profile" id="hades">
                 <h2>Hades</h2>
                 <img src="./assets/images/hades.png" alt="">
@@ -63,7 +66,7 @@
 
         <!-- the_queen & magic_mirror -->
 
-        <div class="characters_container">
+        <div class="characters_container large_container" id="ct-3">
             <div class="character_profile" id="the_queen">
                 <h2>La Reina</h2>
                 <img src="./assets/images/the_queen.png" alt="">
@@ -76,9 +79,9 @@
 
         <!-- king_john & sir_hiss -->
 
-        <div class="characters_container">
+        <div class="characters_container" id="ct-4">
             <div class="character_profile" id="king_john">
-                <h2>El Rey John</h2>
+                <h2>El Príncipe John</h2>
                 <img src="./assets/images/king_john.png" alt="">
             </div>
             <div class="character_profile" id="sir_hiss">
@@ -89,9 +92,9 @@
         
         <!-- hook & smee -->
 
-        <div class="characters_container">
+        <div class="characters_container" id="ct-5">
             <div class="character_profile" id="hook">
-                <h2>Gárfio</h2>
+                <h2>Capitan Gárfio</h2>
                 <img src="./assets/images/hook.png" alt="">
             </div>
             <div class="character_profile" id="smee">
@@ -102,7 +105,7 @@
 
         <!-- queen_of_hearts & king_of_hearts -->
 
-        <div class="characters_container">
+        <div class="characters_container large_container" id="ct-6">
             <div class="character_profile" id="queen_of_hearts">
                 <h2>La Reina de Corazones</h2>
                 <img src="./assets/images/queen_of_hearts.png" alt="">
@@ -115,22 +118,22 @@
 
         <!-- Shere Kahn -->
 
-        <div class="characters_container">
+        <div class="characters_container" id="ct-7">
             <div class="character_profile" id="shere_kahn">
-                <h2>Shere Kahn</h2>
+                <h2>Shere Khan</h2>
                 <img src="./assets/images/shere_kahn.png" alt="">
             </div>
         </div>
 
         <!-- lady_tremaine, drizzela & anastasia -->
 
-        <div class="characters_container">
+        <div class="characters_container" id="ct-8">
             <div class="character_profile" id="lady_tremaine">
                 <h2>Lady Tremaine</h2>
                 <img src="./assets/images/lady_tremaine.png" alt="">
             </div>
             <div class="character_profile" id="drizzela">
-                <h2>Drizzela</h2>
+                <h2>Drizella</h2>
                 <img src="./assets/images/drizzela.png" alt="">
             </div>
             <div class="character_profile" id="anastasia">
@@ -138,11 +141,14 @@
                 <img src="./assets/images/anastasia.png" alt="">
             </div>
         </div>
-        <button id="continue_selection"> Continue </button>
+        <button id="continue_selection"> Continuar </button>
     </div>
 
     <div id="fxf_display">
-        <h1 id="fxf_title"> Diablo le dice a Maléfica si es bueno o malo</h1>
+        <div id="wallpapers_fxf">
+            <img id="claw_mark_wp" src="./assets/images/claw_mark_wp.png" alt="">
+        </div>
+        <h1 id="fxf_title"> Diaval le dice a Maléfica si el pesonaje que eligio es Vándalo (bueno) o Malhechor (Malo)</h1>
         <div class="upper_section">
             <div class="character_profile_fxf" id="maleficent_fxf">
                 <h2>Maléfica</h2>
@@ -156,7 +162,7 @@
                 <h2>Madre Gothel</h2>
                 <img src="./assets/images/mother_gothel.png" alt="">
             </div>
-            <div class="character_profile_fxf" id="brothers_stabbington_fxf">
+            <div class="character_profile_fxf large_container" id="brothers_stabbington_fxf">
                 <h2>Los Hermanos Stabbington</h2>
                 <img src="./assets/images/brothers_stabbington.png" alt="">
             </div>
@@ -172,7 +178,7 @@
                 <h2>La Reina</h2>
                 <img src="./assets/images/the_queen.png" alt="">
             </div>
-            <div class="character_profile_fxf" id="magic_mirror_fxf">
+            <div class="character_profile_fxf large_container" id="magic_mirror_fxf">
                 <h2>El Espejo Mágico</h2>
                 <img src="./assets/images/magic_mirror.png" alt="">
             </div>
@@ -192,11 +198,11 @@
                 <h2>Sr. Smee</h2>
                 <img src="./assets/images/smee.png" alt="">
             </div>
-            <div class="character_profile_fxf" id="queen_of_hearts_fxf">
+            <div class="character_profile_fxf large_container" id="queen_of_hearts_fxf">
                 <h2>La Reina de Corazones</h2>
                 <img src="./assets/images/queen_of_hearts.png" alt="">
             </div>
-            <div class="character_profile_fxf" id="king_of_hearts_fxf">
+            <div class="character_profile_fxf large_container" id="king_of_hearts_fxf">
                 <h2>El Rey de Corazones</h2>
                 <img src="./assets/images/king_of_hearts.png" alt="">
             </div>
@@ -218,15 +224,28 @@
             </div>
         </div>
         <div class="lower_section">
-            <div>
+            <div id="save_choice">
                 <h2>Salvar</h2>
                 <img src="./assets/images/save.png" alt="">
             </div>
-            <div>
+            <div id="kill_choice">
                 <h2>Matar</h2>
                 <img src="./assets/images/kill.png" alt="">
             </div>
+            <div id="mayhem_choice">
+                <h2>Vándalo</h2>
+                <img src="./assets/images/mayhem.png" alt="">
+            </div>
+            <div id="mischief_choice">
+                <h2>Malhechor</h2>
+                <img src="./assets/images/mischief.png" alt="">
+            </div>
+            <div id="choose_now">
+                <h2>Elegir Ahora</h2>
+                <img src="./assets/images/choose_now.png" alt="">
+            </div>
         </div>
+        <button id="reset_game"> Jugar de Nuevo </button>
 
     </div>
 
